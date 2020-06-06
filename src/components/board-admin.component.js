@@ -21,9 +21,14 @@ export default class BoardAdmin extends Component {
               <header className="jumbotron">
                 <h3>Admin Board</h3>
               </header>
-              <Link to={"/diets"}>
+              <ul>
+              <li><Link to={"/diets"}>
                 Dietas
-              </Link>
+              </Link></li>
+              <li><Link to={"/origins"}>
+                Orígenes
+              </Link></li>
+              </ul>
             </div>
           </div>
       </div>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import NavBar from "./navbar.component";
+import NavBar from "../navbar.component";
 import { Link } from "react-router-dom";
-import DietService from "../services/diet.service";
+import DietService from "../../services/diet.service";
 
 export default class DietsList extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export default class DietsList extends Component {
         <>
             <NavBar />
             <div className="container">
-                <div className="row">
+                <div className="row list">
                     <div className="col-md-6">
                         <h4>Dietas</h4>
                         <ul className="list-group">
@@ -66,7 +66,7 @@ export default class DietsList extends Component {
                                     (index === currentIndex ? "active" : "")}
                                     onClick={() => this.setActiveDiet(diet, index)}
                                     >
-                                    {diet.descripcion}
+                                    {diet._id} - {diet.descripcion}
                                 </li>
                             ))}
                         </ul>
@@ -84,7 +84,7 @@ export default class DietsList extends Component {
                         </div>
                         <div>
                             <label>
-                            <strong>Description:</strong>
+                            <strong>Descripción:</strong>
                             </label>{" "}
                             {currentDiet.descripcion}
                         </div>

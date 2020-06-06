@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import NavBar from "./navbar.component";
-import DietService from "../services/diet.service";
+import NavBar from "../navbar.component";
+import DietService from "../../services/diet.service";
 
 export default class Diet extends Component {
   constructor(props) {

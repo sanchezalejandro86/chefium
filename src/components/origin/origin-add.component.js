@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import DietService from "../services/diet.service";
+import OriginService from "../../services/origin.service";
 
-export default class AddDiet extends Component {
+export default class AddOrigin extends Component {
   constructor(props) {
     super(props);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.saveDiet = this.saveDiet.bind(this);
-    this.newDiet = this.newDiet.bind(this);
+    this.saveOrigin = this.saveOrigin.bind(this);
+    this.newOrigin = this.newOrigin.bind(this);
 
     this.state = {
       id: null,
@@ -22,12 +22,12 @@ export default class AddDiet extends Component {
     });
   }
 
-  saveDiet() {
+  saveOrigin() {
     var data = {
       descripcion: this.state.description
     };
 
-    DietService.create(data)
+    OriginService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
@@ -42,7 +42,7 @@ export default class AddDiet extends Component {
       });
   }
 
-  newDiet() {
+  newOrigin() {
     this.setState({
       id: null,
       description: "",
@@ -58,7 +58,7 @@ export default class AddDiet extends Component {
           {this.state.submitted ? (
             <div>
               <h4>You submitted successfully!</h4>
-              <button className="btn btn-success" onClick={this.newDiet}>
+              <button className="btn btn-success" onClick={this.newOrigin}>
                 Add
               </button>
             </div>
@@ -78,12 +78,12 @@ export default class AddDiet extends Component {
                 />
               </div>
   
-              <button onClick={this.saveDiet} className="btn btn-success">
+              <button onClick={this.saveOrigin} className="btn btn-success">
                 Submit
               </button>
               <button
                     className="btn btn-defaut"
-                    onClick={()=>{ this.props.history.push('/diets')}}
+                    onClick={()=>{ this.props.history.push('/origins')}}
               >
                 Cancel
               </button>

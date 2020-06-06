@@ -33,8 +33,7 @@ label {
 
 .list {
   text-align: left;
-  max-width: 750px;
-  margin: auto;
+  margin-top: 50px;
 }
 
 .submit-form {
@@ -44,5 +43,5 @@ label {
 
 .edit-form {
   max-width: 300px;
-  margin: auto;
+  margin: 40px auto;
 }
