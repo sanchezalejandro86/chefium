@@ -8,7 +8,6 @@ export default class NavBar extends Component {
     super(props);
 
     this.state = {
-        showModeratorBoard: false,
         showAdminBoard: false,
         currentUser: undefined
     };
@@ -22,7 +21,7 @@ export default class NavBar extends Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showAdminBoard: user.rol == "administrador"
+        showAdminBoard: user.rol === "administrador"
       });
     }
   }
@@ -33,7 +32,7 @@ export default class NavBar extends Component {
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    const { currentUser, showAdminBoard } = this.state;
 
     return (
         <nav className="navbar navbar-expand navbar-dark bg-dark">

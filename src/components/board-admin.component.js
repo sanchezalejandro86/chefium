@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import UserService from "../services/user.service";
 import NavBar from "./navbar.component";
+import { Link } from "react-router-dom";
 
 export default class BoardAdmin extends Component {
   constructor(props) {
@@ -21,6 +21,9 @@ export default class BoardAdmin extends Component {
               <header className="jumbotron">
                 <h3>Admin Board</h3>
               </header>
+              <Link to={"/diets"}>
+                Dietas
+              </Link>
             </div>
           </div>
       </div>
