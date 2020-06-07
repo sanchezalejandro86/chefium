@@ -22,12 +22,15 @@ export default class BoardAdmin extends Component {
                 <h3>Admin Board</h3>
               </header>
               <ul>
-              <li><Link to={"/diets"}>
-                Dietas
-              </Link></li>
-              <li><Link to={"/origins"}>
-                Orígenes
-              </Link></li>
+                <li><Link to={"/users"}>
+                  Usuarios
+                </Link></li>
+                <li><Link to={"/diets"}>
+                  Dietas
+                </Link></li>
+                <li><Link to={"/origins"}>
+                  Orígenes
+                </Link></li>
               </ul>
             </div>
           </div>

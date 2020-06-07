@@ -17,6 +17,9 @@ import AddDiet from "./components/diet/diet-add.component";
 import OriginsList from "./components/origin/origins-list.component";
 import Origin from "./components/origin/origin.component";
 import AddOrigin from "./components/origin/origin-add.component";
+import UsersList from "./components/user/users-list.component";
+import AddUser from "./components/user/user-add.component";
+import User from "./components/user/user.component";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -48,6 +51,10 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute exact path="/admin" component={BoardAdmin} />
+
+              <PrivateRoute exact path="/users" component={UsersList} />
+              <PrivateRoute exact path="/users/add" component={AddUser} />
+              <PrivateRoute path="/users/:id" component={User} />
 
               <PrivateRoute exact path="/diets" component={DietsList} />
               <PrivateRoute exact path="/diets/add" component={AddDiet} />

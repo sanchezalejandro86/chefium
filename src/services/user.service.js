@@ -1,23 +1,27 @@
 import axios from 'axios';
-import authHeader from './auth-header';
+import authHeader from "./auth-header";
 
-const API_URL = 'http://localhost:4000/v1/usuarios/';
+const API_URL = "http://localhost:4000/v1/usuarios/";
 
 class UserService {
-  getPublicContent() {
-    return axios.get(API_URL + 'all');
+  getAll() {
+    return axios.get(API_URL, { headers: authHeader() });
   }
 
-  getUserBoard() {
-    return axios.get(API_URL + 'user', { headers: authHeader() });
+  get(id){
+    return axios.get(API_URL + id, { headers: authHeader() });
   }
 
-  getModeratorBoard() {
-    return axios.get(API_URL + 'mod', { headers: authHeader() });
+  create(data) {
+    return axios.post(API_URL, data, { headers: authHeader() });
   }
 
-  getAdminBoard() {
-    return axios.get(API_URL + 'admin', { headers: authHeader() });
+  update(id, diet){
+    return axios.put(API_URL + id, diet, { headers: authHeader() });
+  }
+  
+  delete(id){
+    return axios.delete(API_URL + id, { headers: authHeader() });
   }
 }
 
