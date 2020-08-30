@@ -8,7 +8,7 @@ import AuthService from "./services/auth.service";
 
 import Login from "./components/login.component";
 //import Register from "./components/register.component";
-import Home from "./components/home.component";
+import Home from "./components/home/home.component";
 import Profile from "./components/profile.component";
 import BoardAdmin from "./components/board-admin.component";
 import DietsList from "./components/diet/diets-list.component";
@@ -20,6 +20,7 @@ import AddOrigin from "./components/origin/origin-add.component";
 import UsersList from "./components/user/users-list.component";
 import AddUser from "./components/user/user-add.component";
 import User from "./components/user/user.component";
+import TyC from "./components/tyc/tyc.component";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -48,6 +49,7 @@ class App extends Component {
       <Router>
             <Switch>
               <Route exact path={["/", "/home"]} component={Home} />
+              <Route exact path="/terminos" component={TyC} />
               <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute exact path="/admin" component={BoardAdmin} />

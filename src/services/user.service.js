@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:4000/v1/usuarios/";
+const API_URL = "http://api.chefium.com.ar/v1/usuarios/";
 
 class UserService {
   getAll() {
