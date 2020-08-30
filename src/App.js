@@ -21,6 +21,7 @@ import UsersList from "./components/user/users-list.component";
 import AddUser from "./components/user/user-add.component";
 import User from "./components/user/user.component";
 import TyC from "./components/tyc/tyc.component";
+import Privacidad from "./components/privacy/privacy.component";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -50,6 +51,7 @@ class App extends Component {
             <Switch>
               <Route exact path={["/", "/home"]} component={Home} />
               <Route exact path="/terminos" component={TyC} />
+              <Route exact path="/privacidad" component={Privacidad} />
               <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute exact path="/admin" component={BoardAdmin} />
