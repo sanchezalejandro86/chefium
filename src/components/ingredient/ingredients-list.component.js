@@ -2,28 +2,28 @@ import React, { Component } from "react";
 
 import NavBar from "../navbar.component";
 import { Link } from "react-router-dom";
-import DietService from "../../services/diet.service";
+import IngredientService from "../../services/ingredient.service";
 
-export default class DietsList extends Component {
+export default class IngredientsList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        diets: [],
-        currentDiet: null,
+        ingredients: [],
+        currentIngredient: null,
         currentIndex: -1,
     };
   }
 
   componentDidMount() {
-    this.retrieveDiets();
+    this.retrieveIngredients();
   }
 
-  retrieveDiets() {
-    DietService.getAll()
+  retrieveIngredients() {
+    IngredientService.getAll()
         .then(response => {
             this.setState({
-                diets: response.data
+                ingredients: response.data
             });
             console.log(response.data);
         })
@@ -33,22 +33,22 @@ export default class DietsList extends Component {
   }
 
   refreshList() {
-    this.retrieveDiets();
+    this.retrieveIngredients();
     this.setState({
-      currentDiet: null,
+      currentIngredient: null,
       currentIndex: -1
     });
   }
 
-  setActiveDiet(diet, index) {
+  setActiveIngredient(ingredient, index) {
     this.setState({
-      currentDiet: diet,
+      currentIngredient: ingredient,
       currentIndex: index
     });
   }
 
   render() {
-    const { diets, currentDiet, currentIndex } = this.state;
+    const { ingredients, currentIngredient, currentIndex } = this.state;
 
     return (
         <>
@@ -56,47 +56,40 @@ export default class DietsList extends Component {
             <div className="container">
                 <div className="row list">
                     <div className="col-md-6">
-                        <h4>Dietas</h4>
+                        <h4>Ingredientes</h4>
                         <ul className="list-group">
                             {
-                            diets.length > 0 &&
-                                diets.map((diet, index) => (
+                            ingredients.length > 0 &&
+                                ingredients.map((ingredient, index) => (
                                 <li key={index} className={
                                     "list-group-item " +
                                     (index === currentIndex ? "active" : "")}
-                                    onClick={() => this.setActiveDiet(diet, index)}
+                                    onClick={() => this.setActiveIngredient(ingredient, index)}
                                     >
-                                    {diet._id} - {diet.descripcion}
+                                    {ingredient._id} - {ingredient.descripcion}
                                 </li>
                             ))}
                         </ul>
-                        <Link to={"/diets/add"}>New</Link><br />
+                        <Link to={"/ingredients/add"}>New</Link><br />
                     </div>
                     <div className="col-md-6">
-                        {currentDiet ? (
+                        {currentIngredient ? (
                         <div>
-                        <h5>Dieta</h5>
+                        <h5>Ingrediente</h5>
                         <div>
                             <label>
                             <strong>ID:</strong>
                             </label>{" "}
-                            {currentDiet._id}
+                            {currentIngredient._id}
                         </div>
                         <div>
                             <label>
                             <strong>Descripción:</strong>
                             </label>{" "}
-                            {currentDiet.descripcion}
-                        </div>
-                        <div>
-                            <label>
-                            <strong>Icono:</strong>
-                            </label>{" "}
-                            <img src={currentDiet.icono}></img>
-                            
+                            {currentIngredient.descripcion}
                         </div>
                         <Link
-                            to={"/diets/" + currentDiet._id}
+                            to={"/ingredients/" + currentIngredient._id}
                             className="btn btn-warning"
                         >
                             Edit
@@ -105,7 +98,7 @@ export default class DietsList extends Component {
                     ) : (
                         <div>
                         <br />
-                        <p>Please click on a Diet...</p>
+                        <p>Please click on an Ingredient...</p>
                         </div>
                     )}
                     </div>

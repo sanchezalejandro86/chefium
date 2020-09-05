@@ -5,12 +5,15 @@ export default class AddDiet extends Component {
   constructor(props) {
     super(props);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeIcon = this.onChangeIcon.bind(this);
+
     this.saveDiet = this.saveDiet.bind(this);
     this.newDiet = this.newDiet.bind(this);
 
     this.state = {
       id: null,
-      description: "", 
+      description: "",
+      icon: "", 
 
       submitted: false
     };
@@ -22,9 +25,16 @@ export default class AddDiet extends Component {
     });
   }
 
+  onChangeIcon(e) {
+    this.setState({
+      icon: e.target.value
+    });
+  }
+
   saveDiet() {
     var data = {
-      descripcion: this.state.description
+      descripcion: this.state.description,
+      icono: this.state.icon
     };
 
     DietService.create(data)
@@ -32,6 +42,7 @@ export default class AddDiet extends Component {
         this.setState({
           id: response.data.id,
           description: response.data.descripcion,
+          icon: response.data.icono,
 
           submitted: true
         });
@@ -46,6 +57,7 @@ export default class AddDiet extends Component {
     this.setState({
       id: null,
       description: "",
+      icon: "",
 
       submitted: false
     });
@@ -78,6 +90,19 @@ export default class AddDiet extends Component {
                 />
               </div>
   
+              <div className="form-group">
+                <label htmlFor="icon">Icono</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="icon"
+                  required
+                  value={this.state.icon}
+                  onChange={this.onChangeIcon}
+                  name="icon"
+                />
+              </div>
+
               <button onClick={this.saveDiet} className="btn btn-success">
                 Submit
               </button>

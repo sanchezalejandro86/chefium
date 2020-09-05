@@ -88,6 +88,12 @@ export default class OriginsList extends Component {
                             </label>{" "}
                             {currentOrigin.descripcion}
                         </div>
+                        <div>
+                            <label>
+                            <strong>Pais ISO3166-1:</strong>
+                            </label>{" "}
+                            {currentOrigin.paisISO3166_1}
+                        </div>
                         <Link
                             to={"/origins/" + currentOrigin._id}
                             className="btn btn-warning"

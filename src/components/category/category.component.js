@@ -1,60 +1,46 @@
 import React, { Component } from "react";
 
 import NavBar from "../navbar.component";
-import OriginService from "../../services/origin.service";
+import CategoryService from "../../services/category.service";
 
-export default class Origin extends Component {
+export default class Category extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangePaisISO3166_1 = this.onChangePaisISO3166_1.bind(this);
-    
-    this.getOrigin = this.getOrigin.bind(this);
-    this.updateOrigin = this.updateOrigin.bind(this);
-    this.deleteOrigin = this.deleteOrigin.bind(this);
+    this.getCategory = this.getCategory.bind(this);
+    this.updateCategory = this.updateCategory.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
 
     this.state = {
-        currentOrigin: {
+        currentCategory: {
             id: null,
             descripcion: "",
-            paisISO3166_1: "",
           },
         message: ""
     };
   }
 
   componentDidMount() {
-    this.getOrigin(this.props.match.params.id);
+    this.getCategory(this.props.match.params.id);
   }
 
   onChangeDescription(e) {
     const description = e.target.value;
     
     this.setState(prevState => ({
-      currentOrigin: {
-        ...prevState.currentOrigin,
-        descripcion: description,
+      currentCategory: {
+        ...prevState.currentCategory,
+        descripcion: description
       }
     }));
   }
   
-  onChangePaisISO3166_1(e) {
-    const paisISO3166_1 = e.target.value;
-    
-    this.setState(prevState => ({
-      currentOrigin: {
-        ...prevState.currentOrigin,
-        paisISO3166_1: paisISO3166_1,
-      }
-    }));
-  }
-
-  getOrigin(id) {
-    OriginService.get(id)
+  getCategory(id) {
+    CategoryService.get(id)
       .then(response => {
         this.setState({
-          currentOrigin: response.data
+          currentCategory: response.data
         });
         console.log(response.data);
       })
@@ -63,15 +49,15 @@ export default class Origin extends Component {
       });
   }
 
-  updateOrigin() {
-    OriginService.update(
-      this.state.currentOrigin._id,
-      this.state.currentOrigin
+  updateCategory() {
+    CategoryService.update(
+      this.state.currentCategory._id,
+      this.state.currentCategory
     )
       .then(response => {
         console.log(response.data);
         this.setState({
-          message: "The origin was updated successfully!"
+          message: "The category was updated successfully!"
         });
       })
       .catch(e => {
@@ -79,11 +65,11 @@ export default class Origin extends Component {
       });
   }
 
-  deleteOrigin() {    
-    OriginService.delete(this.state.currentOrigin._id)
+  deleteCategory() {    
+    CategoryService.delete(this.state.currentCategory._id)
       .then(response => {
         console.log(response.data);
-        this.props.history.push('/origins')
+        this.props.history.push('/categories')
       })
       .catch(e => {
         console.log(e);
@@ -92,15 +78,15 @@ export default class Origin extends Component {
 
 
   render() {
-    const { currentOrigin } = this.state;
+    const { currentCategory } = this.state;
 
     return (
         <>
             <NavBar />
             <div className="container">
-                {currentOrigin ? (
+                {currentCategory ? (
                 <div className="edit-form col-6">
-                    <h4>Orígen</h4>
+                    <h4>Categoría</h4>
                     <form>
                         <div className="form-group">
                             <label htmlFor="description">Descripción</label>
@@ -108,25 +94,15 @@ export default class Origin extends Component {
                                 type="text"
                                 className="form-control"
                                 id="description"
-                                value={currentOrigin.descripcion}
+                                value={currentCategory.descripcion}
                                 onChange={this.onChangeDescription}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="paisISO3166_1">Pais ISO3166-1</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="paisISO3166_1"
-                                value={currentOrigin.paisISO3166_1}
-                                onChange={this.onChangePaisISO3166_1}
                             />
                         </div>
                     </form>
 
                     <button
                         className="btn btn-danger mr-2"
-                        onClick={this.deleteOrigin}
+                        onClick={this.deleteCategory}
                     >
                     Delete
                     </button>
@@ -134,13 +110,13 @@ export default class Origin extends Component {
                     <button
                         type="submit"
                         className="btn btn-success"
-                        onClick={this.updateOrigin}
+                        onClick={this.updateCategory}
                     >
                     Update
                     </button>
                     <button
                         className="btn btn-defaut"
-                        onClick={()=>{ this.props.history.push('/origins')}}
+                        onClick={()=>{ this.props.history.push('/categories')}}
                     >
                     Cancel
                     </button>
@@ -149,7 +125,7 @@ export default class Origin extends Component {
                 ) : (
                 <div>
                     <br />
-                    <p>Please click on an Origin...</p>
+                    <p>Please click on a Category...</p>
                 </div>
                 )}
             </div>

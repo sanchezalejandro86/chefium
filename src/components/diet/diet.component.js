@@ -8,6 +8,8 @@ export default class Diet extends Component {
     super(props);
 
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeIcon = this.onChangeIcon.bind(this);
+
     this.getDiet = this.getDiet.bind(this);
     this.updateDiet = this.updateDiet.bind(this);
     this.deleteDiet = this.deleteDiet.bind(this);
@@ -16,6 +18,7 @@ export default class Diet extends Component {
         currentDiet: {
             id: null,
             descripcion: "",
+            icon: "",
           },
         message: ""
     };
@@ -35,7 +38,18 @@ export default class Diet extends Component {
       }
     }));
   }
-  
+
+  onChangeIcon(e) {
+    const icon = e.target.value;
+    
+    this.setState(prevState => ({
+      currentDiet: {
+        ...prevState.currentDiet,
+        icon: icon
+      }
+    }));
+  }
+
   getDiet(id) {
     DietService.get(id)
       .then(response => {
@@ -96,6 +110,16 @@ export default class Diet extends Component {
                                 id="description"
                                 value={currentDiet.descripcion}
                                 onChange={this.onChangeDescription}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="icon">Icono</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="icon"
+                                value={currentDiet.icono}
+                                onChange={this.onChangeIcon}
                             />
                         </div>
                     </form>

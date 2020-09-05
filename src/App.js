@@ -17,6 +17,12 @@ import AddDiet from "./components/diet/diet-add.component";
 import OriginsList from "./components/origin/origins-list.component";
 import Origin from "./components/origin/origin.component";
 import AddOrigin from "./components/origin/origin-add.component";
+import CategoriesList from "./components/category/categories-list.component";
+import Category from "./components/category/category.component";
+import AddCategory from "./components/category/category-add.component";
+import IngredientsList from "./components/ingredient/ingredients-list.component";
+import Ingredient from "./components/ingredient/ingredient.component";
+import AddIngredient from "./components/ingredient/ingredient-add.component";
 import UsersList from "./components/user/users-list.component";
 import AddUser from "./components/user/user-add.component";
 import User from "./components/user/user.component";
@@ -67,6 +73,14 @@ class App extends Component {
               <PrivateRoute exact path="/origins" component={OriginsList} />
               <PrivateRoute exact path="/origins/add" component={AddOrigin} />
               <PrivateRoute path="/origins/:id" component={Origin} />
+
+              <PrivateRoute exact path="/categories" component={CategoriesList} />
+              <PrivateRoute exact path="/categories/add" component={AddCategory} />
+              <PrivateRoute path="/categories/:id" component={Category} />
+
+              <PrivateRoute exact path="/ingredients" component={IngredientsList} />
+              <PrivateRoute exact path="/ingredients/add" component={AddIngredient} />
+              <PrivateRoute path="/ingredients/:id" component={Ingredient} />
 
             </Switch>
       </Router>

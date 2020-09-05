@@ -2,28 +2,28 @@ import React, { Component } from "react";
 
 import NavBar from "../navbar.component";
 import { Link } from "react-router-dom";
-import DietService from "../../services/diet.service";
+import CategoryService from "../../services/category.service";
 
-export default class DietsList extends Component {
+export default class CategoriesList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        diets: [],
-        currentDiet: null,
+        categories: [],
+        currentCategory: null,
         currentIndex: -1,
     };
   }
 
   componentDidMount() {
-    this.retrieveDiets();
+    this.retrieveCategories();
   }
 
-  retrieveDiets() {
-    DietService.getAll()
+  retrieveCategories() {
+    CategoryService.getAll()
         .then(response => {
             this.setState({
-                diets: response.data
+                categories: response.data
             });
             console.log(response.data);
         })
@@ -33,22 +33,22 @@ export default class DietsList extends Component {
   }
 
   refreshList() {
-    this.retrieveDiets();
+    this.retrieveCategories();
     this.setState({
-      currentDiet: null,
+      currentCategory: null,
       currentIndex: -1
     });
   }
 
-  setActiveDiet(diet, index) {
+  setActiveCategory(category, index) {
     this.setState({
-      currentDiet: diet,
+      currentCategory: category,
       currentIndex: index
     });
   }
 
   render() {
-    const { diets, currentDiet, currentIndex } = this.state;
+    const { categories, currentCategory, currentIndex } = this.state;
 
     return (
         <>
@@ -56,47 +56,40 @@ export default class DietsList extends Component {
             <div className="container">
                 <div className="row list">
                     <div className="col-md-6">
-                        <h4>Dietas</h4>
+                        <h4>Categorías</h4>
                         <ul className="list-group">
                             {
-                            diets.length > 0 &&
-                                diets.map((diet, index) => (
+                            categories.length > 0 &&
+                                categories.map((category, index) => (
                                 <li key={index} className={
                                     "list-group-item " +
                                     (index === currentIndex ? "active" : "")}
-                                    onClick={() => this.setActiveDiet(diet, index)}
+                                    onClick={() => this.setActiveCategory(category, index)}
                                     >
-                                    {diet._id} - {diet.descripcion}
+                                    {category._id} - {category.descripcion}
                                 </li>
                             ))}
                         </ul>
-                        <Link to={"/diets/add"}>New</Link><br />
+                        <Link to={"/categories/add"}>New</Link><br />
                     </div>
                     <div className="col-md-6">
-                        {currentDiet ? (
+                        {currentCategory ? (
                         <div>
-                        <h5>Dieta</h5>
+                        <h5>Categoría</h5>
                         <div>
                             <label>
                             <strong>ID:</strong>
                             </label>{" "}
-                            {currentDiet._id}
+                            {currentCategory._id}
                         </div>
                         <div>
                             <label>
                             <strong>Descripción:</strong>
                             </label>{" "}
-                            {currentDiet.descripcion}
-                        </div>
-                        <div>
-                            <label>
-                            <strong>Icono:</strong>
-                            </label>{" "}
-                            <img src={currentDiet.icono}></img>
-                            
+                            {currentCategory.descripcion}
                         </div>
                         <Link
-                            to={"/diets/" + currentDiet._id}
+                            to={"/categories/" + currentCategory._id}
                             className="btn btn-warning"
                         >
                             Edit
@@ -105,7 +98,7 @@ export default class DietsList extends Component {
                     ) : (
                         <div>
                         <br />
-                        <p>Please click on a Diet...</p>
+                        <p>Please click on a Category...</p>
                         </div>
                     )}
                     </div>

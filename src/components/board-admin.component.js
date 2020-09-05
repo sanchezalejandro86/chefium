@@ -25,11 +25,17 @@ export default class BoardAdmin extends Component {
                 <li><Link to={"/users"}>
                   Usuarios
                 </Link></li>
+                <li><Link to={"/categories"}>
+                  Categorías
+                </Link></li>
                 <li><Link to={"/diets"}>
                   Dietas
                 </Link></li>
                 <li><Link to={"/origins"}>
                   Orígenes
+                </Link></li>
+                <li><Link to={"/ingredients"}>
+                  Ingredientes
                 </Link></li>
               </ul>
             </div>

@@ -1,19 +1,16 @@
 import React, { Component } from "react";
-import OriginService from "../../services/origin.service";
+import IngredientService from "../../services/ingredient.service";
 
-export default class AddOrigin extends Component {
+export default class AddIngredient extends Component {
   constructor(props) {
     super(props);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangePaisISO3166_1 = this.onChangePaisISO3166_1.bind(this);
-  
-    this.saveOrigin = this.saveOrigin.bind(this);
-    this.newOrigin = this.newOrigin.bind(this);
+    this.saveIngredient = this.saveIngredient.bind(this);
+    this.newIngredient = this.newIngredient.bind(this);
 
     this.state = {
       id: null,
-      description: "",
-      paisISO3166_1: "", 
+      description: "", 
 
       submitted: false
     };
@@ -25,23 +22,16 @@ export default class AddOrigin extends Component {
     });
   }
 
-  onChangePaisISO3166_1(e) {
-    this.setState({
-      paisISO3166_1: e.target.value
-    });
-  }
-
-  saveOrigin() {
+  saveIngredient() {
     var data = {
       descripcion: this.state.description
     };
 
-    OriginService.create(data)
+    IngredientService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
           description: response.data.descripcion,
-          paisISO3166_1: response.data.paisISO3166_1,
 
           submitted: true
         });
@@ -52,11 +42,10 @@ export default class AddOrigin extends Component {
       });
   }
 
-  newOrigin() {
+  newIngredient() {
     this.setState({
       id: null,
       description: "",
-      paisISO3166_1: "",
 
       submitted: false
     });
@@ -69,7 +58,7 @@ export default class AddOrigin extends Component {
           {this.state.submitted ? (
             <div>
               <h4>You submitted successfully!</h4>
-              <button className="btn btn-success" onClick={this.newOrigin}>
+              <button className="btn btn-success" onClick={this.newIngredient}>
                 Add
               </button>
             </div>
@@ -88,26 +77,13 @@ export default class AddOrigin extends Component {
                   name="description"
                 />
               </div>
-              
-              <div className="form-group">
-                <label htmlFor="paisISO3166_1">Pais ISO3166-1</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="paisISO3166_1"
-                  required
-                  value={this.state.paisISO3166_1}
-                  onChange={this.onChangePaisISO3166_1}
-                  name="paisISO3166_1"
-                />
-              </div>
-              
-              <button onClick={this.saveOrigin} className="btn btn-success">
+  
+              <button onClick={this.saveIngredient} className="btn btn-success">
                 Submit
               </button>
               <button
                     className="btn btn-defaut"
-                    onClick={()=>{ this.props.history.push('/origins')}}
+                    onClick={()=>{ this.props.history.push('/ingredients')}}
               >
                 Cancel
               </button>
